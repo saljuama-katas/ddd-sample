@@ -34,6 +34,14 @@ class CartTest {
         assertEquals(0, cart.getProducts().size());
 
         assertTrue(cart.getDeletedItemNames().contains(applePencil.getName()));
+    }
 
+    @Test
+    void cartsAreNotTheSameAndYouKnowIt() {
+        Cart cart1 = new Cart();
+        Cart cart2 = new Cart();
+        cart1.add(new Product("Something"), 5);
+        cart2.add(new Product("Something"), 5);
+        assertFalse(cart1.equals(cart2));
     }
 }

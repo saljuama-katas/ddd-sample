@@ -2,10 +2,13 @@ package com.ddd_bootcamp.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 import static java.util.stream.Collectors.toList;
 
 public class Cart {
+    private final UUID id = UUID.randomUUID();
     private final List<Item> items = new ArrayList<>();
     private final List<String> deletedItemNames = new ArrayList<>();
 
@@ -38,5 +41,18 @@ public class Cart {
                 "items=" + items +
                 ", deletedItemNames=" + deletedItemNames +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cart cart = (Cart) o;
+        return id.equals(cart.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
